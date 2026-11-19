@@ -1,0 +1,57 @@
+Plugin Modo Daltónico para MantisBT
+===================================
+
+1) Archivos y rutas
+-------------------
+- ModoDaltonico/ModoDaltonico.php
+  Clase principal del plugin. Define metadatos (register), configuración por defecto (config), hooks a eventos (hooks), e instala/desinstala (install/uninstall). Expone la página de configuración en pages/config.php.
+
+- ModoDaltonico/pages/config.php
+  Página de configuración con layout mínimo de MantisBT. Incluye formulario con CSRF para editar:
+  * Activación por defecto (booleano)
+  * Tipo de contraste (protanopia, deuteranopia, tritanopia)
+  Usa gpc_get_string/int/bool, plugin_config_get/set y form_security_*.
+
+- ModoDaltonico/pages/toggle.php
+  Handler para el botón flotante. Recibe parámetro 'activo' ('on'/'off') y responde JSON { ok: true/false }. No persiste estado en servidor (solo localStorage del navegador).
+
+- ModoDaltonico/pages/config_data.php
+  Endpoint que emite JavaScript (Content-Type: application/javascript) para definir window.ModoDaltonicoConfig con datos del servidor (textos, opciones y URL del handler). Permite cumplir CSP sin <script> inline.
+
+- ModoDaltonico/files/modoDaltonico.css
+  Estilos del modo daltónico. Aplica filtros/ajustes de contraste por tipo (protanopia, deuteranopia, tritanopia) sin modificar directamente los colores de los elementos. Incluye botón flotante .md-toggle (fixed, accesible, aria-pressed) y un indicador/badge.
+
+- ModoDaltonico/files/modoDaltonico.js
+  Lógica del cliente. Lee window.ModoDaltonicoConfig { initialActive, contrastType, toggleUrl, activeLabel, inactiveLabel, strings }. Gestiona localStorage ('md_active'), crea el botón flotante, alterna estado con toggleActive(), actualiza aria-pressed/indicador y envía petición a toggle.php. Usa addEventListener (CSP-compliant).
+
+- ModoDaltonico/lang/strings_english.txt
+  Textos de idioma en inglés. Claves con prefijo s_plugin_ModoDaltonico_*.
+
+- ModoDaltonico/lang/strings_spanish.txt
+  Textos de idioma en español. Claves con prefijo s_plugin_ModoDaltonico_*.
+
+2) Variables de configuración del plugin
+---------------------------------------
+- default_enabled (bool):
+  Descripción: Si el modo daltónico está activado por defecto para usuarios nuevos/sin preferencia previa en localStorage.
+  Valor por defecto: true (Activado por defecto).
+
+- contrast_type (string):
+  Descripción: Tipo de contraste a aplicar cuando el modo está activo. Valores posibles: 'protanopia', 'deuteranopia', 'tritanopia'.
+  Valor por defecto: 'deuteranopia'.
+
+3) Hooks implementados
+----------------------
+- EVENT_LAYOUT_RESOURCES:
+  Inserta <link> del CSS y <script> del JS del plugin, y un <script src> adicional a pages/config_data.php para poblar window.ModoDaltonicoConfig sin JS inline.
+
+- EVENT_MENU_MAIN:
+  Añade un enlace al menú principal que apunta a la página de configuración del plugin (pages/config.php).
+
+4) Cumplimiento CSP y convenciones MantisBT
+-------------------------------------------
+- Sin atributos inline (onclick/onchange/...). Sin <script> inline.
+- Todos los CSS/JS están en files/ y se cargan con plugin_file('modoDaltonico.css'|'modoDaltonico.js').
+- Datos PHP→JS via window.ModoDaltonicoConfig definido desde pages/config_data.php.
+- Formularios con form_security_field() y validación form_security_validate()/purge().
+- register()->page = 'config' y pages/config.php existe.

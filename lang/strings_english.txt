@@ -1,0 +1,17 @@
+<?php
+$s_plugin_ModoDaltonico_nombre = 'Color-blind Mode';
+$s_plugin_ModoDaltonico_descripcion = 'Accessibility plugin to improve color contrast and visibility for users with color vision deficiency.';
+$s_plugin_ModoDaltonico_activar = 'Activate';
+$s_plugin_ModoDaltonico_desactivar = 'Deactivate';
+$s_plugin_ModoDaltonico_protanopia = 'Protanopia';
+$s_plugin_ModoDaltonico_deuteranopia = 'Deuteranopia';
+$s_plugin_ModoDaltonico_tritanopia = 'Tritanopia';
+$s_plugin_ModoDaltonico_guardar = 'Save';
+$s_plugin_ModoDaltonico_cancelar = 'Cancel';
+$s_plugin_ModoDaltonico_modo_activo = 'Color-blind mode is active';
+$s_plugin_ModoDaltonico_modo_inactivo = 'Color-blind mode is inactive';
+$s_plugin_ModoDaltonico_indicador_activo = 'Accessibility indicator';
+$s_plugin_ModoDaltonico_configuracion = 'Configuration';
+$s_plugin_ModoDaltonico_activado = 'Enabled';
+$s_plugin_ModoDaltonico_desactivado = 'Disabled';
+$s_plugin_ModoDaltonico_guardado_ok = 'Changes saved successfully.';

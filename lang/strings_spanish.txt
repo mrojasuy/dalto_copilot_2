@@ -1,0 +1,17 @@
+<?php
+$s_plugin_ModoDaltonico_nombre = 'Modo Daltónico';
+$s_plugin_ModoDaltonico_descripcion = 'Plugin de accesibilidad para mejorar el contraste y la visibilidad a usuarios con daltonismo.';
+$s_plugin_ModoDaltonico_activar = 'Activar';
+$s_plugin_ModoDaltonico_desactivar = 'Desactivar';
+$s_plugin_ModoDaltonico_protanopia = 'Protanopia';
+$s_plugin_ModoDaltonico_deuteranopia = 'Deuteranopia';
+$s_plugin_ModoDaltonico_tritanopia = 'Tritanopia';
+$s_plugin_ModoDaltonico_guardar = 'Guardar';
+$s_plugin_ModoDaltonico_cancelar = 'Cancelar';
+$s_plugin_ModoDaltonico_modo_activo = 'El modo daltónico está activo';
+$s_plugin_ModoDaltonico_modo_inactivo = 'El modo daltónico está inactivo';
+$s_plugin_ModoDaltonico_indicador_activo = 'Indicador de accesibilidad';
+$s_plugin_ModoDaltonico_configuracion = 'Configuración';
+$s_plugin_ModoDaltonico_activado = 'Activado';
+$s_plugin_ModoDaltonico_desactivado = 'Desactivado';
+$s_plugin_ModoDaltonico_guardado_ok = 'Cambios guardados correctamente.';

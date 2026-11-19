@@ -1,0 +1,120 @@
+/* Modo Daltónico - Estilos de accesibilidad
+   Nota: No modifica colores individuales; aplica filtros globales y ajustes de contraste.
+   Compatible con navegadores modernos (Chrome/Safari/Edge recientes).
+*/
+
+/* Estados del modo */
+body.md-active.md-contrast-protanopia {
+	/* Mejora separación de tonos rojizos/verdosos */
+	-webkit-filter: saturate(1.1) contrast(1.1) hue-rotate(-12deg);
+	filter: saturate(1.1) contrast(1.1) hue-rotate(-12deg);
+}
+
+body.md-active.md-contrast-deuteranopia {
+	/* Mejora separación de tonos verdosos/amarillentos */
+	-webkit-filter: saturate(1.1) contrast(1.12) hue-rotate(12deg);
+	filter: saturate(1.1) contrast(1.12) hue-rotate(12deg);
+}
+
+body.md-active.md-contrast-tritanopia {
+	/* Mejora separación azul/amarillo con mayor contraste */
+	-webkit-filter: saturate(1.15) contrast(1.12) hue-rotate(150deg);
+	filter: saturate(1.15) contrast(1.12) hue-rotate(150deg);
+}
+
+/* Botón flotante accesible */
+.md-toggle {
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	z-index: 2147483647; /* por encima de overlays comunes */
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 44px;
+	height: 44px;
+	padding: 0 12px;
+	border-radius: 22px;
+	border: 1px solid rgba(0,0,0,0.2);
+	background: #fff;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+	cursor: pointer;
+}
+
+.md-toggle:focus {
+	outline: 2px solid #315bb7;
+	outline-offset: 2px;
+}
+
+.md-toggle .md-label {
+	font-size: 12px;
+	line-height: 1;
+	user-select: none;
+}
+
+/* Indicador/badge del estado */
+.md-badge {
+	display: inline-block;
+	min-width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	margin-left: 4px;
+	border: 1px solid rgba(0,0,0,0.15);
+}
+
+/* Colores del indicador; no afectan al contenido */
+.md-badge.is-on { background: #2ecc71; }
+.md-badge.is-off { background: #bdc3c7; }
+
+/* Evitar superponer contenido crítico en pantallas pequeñas */
+@media (max-width: 480px) {
+	.md-toggle { bottom: 12px; right: 12px; }
+}
+
+/* Selector flotante con el mismo diseño que el botón */
+.md-select {
+	position: fixed;
+	/* Colocar junto (arriba) del botón para no tapar contenido */
+	bottom: 68px; /* 44px alto + 8px gap + margen */
+	right: 16px;
+	z-index: 2147483647;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 44px;
+	height: 44px;
+	padding: 0 12px;
+	border-radius: 22px;
+	border: 1px solid rgba(0,0,0,0.2);
+	background: #fff;
+	color: #333;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.md-select:focus-within {
+	outline: 2px solid #315bb7;
+	outline-offset: 2px;
+}
+
+.md-select .md-label {
+	font-size: 12px;
+	line-height: 1;
+	user-select: none;
+}
+
+.md-select-control {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	background: transparent;
+	font-size: 12px;
+	color: inherit;
+	padding: 4px 0;
+	outline: none;
+}
+
+@media (max-width: 480px) {
+	.md-select { bottom: 60px; right: 12px; }
+}
